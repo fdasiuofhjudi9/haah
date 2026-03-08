@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠 연구회 모집 포스터 (인쇄용)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --accent: #FF3D00;
+    --accent-light: #FF6E40;
+    --grey: #b0b0a8;
+    --dark-grey: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .poster {
+    width: 210mm;
+    height: 297mm;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Grain */
+  .poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .stripe {
+    position: absolute;
+    top: -80px;
+    right: -40px;
+    width: 200px;
+    height: 1300px;
+    background: var(--accent);
+    transform: rotate(8deg);
+    z-index: 0;
+  }
+
+  .stripe-thin {
+    position: absolute;
+    top: -80px;
+    right: 130px;
+    width: 3px;
+    height: 1300px;
+    background: var(--accent-light);
+    transform: rotate(8deg);
+    opacity: 0.5;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 2;
+    padding: 44px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+  }
+
+  /* Title */
+  .title-section { margin-top: 24px; }
+
+  .title-main {
+    font-weight: 900;
+    font-size: 68px;
+    line-height: 1.08;
+    letter-spacing: -2px;
+  }
+
+  .title-main .hl { color: var(--accent); }
+
+  .title-sub {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 10px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--grey) 0%, transparent 70%);
+    margin: 28px 0;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  /* Activities */
+  .activity-grid {
+    display: flex;
+    gap: 12px;
+  }
+
+  .activity-card {
+    flex: 1;
+    background: var(--dark-grey);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 22px 16px;
+    text-align: center;
+  }
+
+  .activity-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .activity-name {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* Schedule */
+  .schedule-box {
+    margin-top: 28px;
+    background: linear-gradient(135deg, var(--dark-grey), #141414);
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+
+  .schedule-title {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .sched-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .sched-row:last-child { margin-bottom: 0; }
+
+  .sched-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .sched-label {
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--grey);
+    min-width: 40px;
+    flex-shrink: 0;
+  }
+
+  .sched-value {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .day-tags { display: flex; gap: 6px; }
+
+  .day-tag {
+    background: var(--accent);
+    color: var(--black);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 6px;
+  }
+
+  /* Contact */
+  .contact-section { margin-top: 28px; }
+
+  .contact-grid {
+    display: flex;
+    gap: 12px;
+  }
+
+  .contact-card {
+    flex: 1;
+    background: var(--dark-grey);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .contact-role {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 6px;
+  }
+
+  .contact-name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .contact-sub {
+    font-weight: 300;
+    font-size: 12px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .cta {
+    margin-top: auto;
+    padding-top: 28px;
+  }
+
+  .cta-button {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 4px;
+    padding: 18px 0;
+    border-radius: 14px;
+    border: none;
+    text-align: center;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    body {
+      background: none;
+      display: block;
+      min-height: auto;
+    }
+    .poster {
+      width: 210mm;
+      height: 297mm;
+      box-shadow: none;
+      margin: 0;
+    }
+    .poster, .poster * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="stripe"></div>
+  <div class="stripe-thin"></div>
+
+  <div class="inner">
+    <div class="badge">2026 신입부원 모집</div>
+
+    <div class="title-section">
+      <h1 class="title-main"><span class="hl">콘텐츠</span><br>연구회</h1>
+      <p class="title-sub">Contents Research Club</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Activities -->
+    <div class="section-label">What We Do</div>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <span class="activity-icon">🎨</span>
+        <span class="activity-name">포스터<br>만들기</span>
+      </div>
+      <div class="activity-card">
+        <span class="activity-icon">📰</span>
+        <span class="activity-name">신문<br>읽기</span>
+      </div>
+      <div class="activity-card">
+        <span class="activity-icon">💻</span>
+        <span class="activity-name">코딩</span>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="schedule-box">
+      <div class="schedule-title">📋 면접 일정</div>
+      <div class="sched-row">
+        <span class="sched-icon">📅</span>
+        <span class="sched-label">요일</span>
+        <div class="day-tags">
+          <span class="day-tag">화</span>
+          <span class="day-tag">수</span>
+          <span class="day-tag">목</span>
+        </div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-icon">🕐</span>
+        <span class="sched-label">시간</span>
+        <span class="sched-value">오후 1시 30분 이후</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-icon">📍</span>
+        <span class="sched-label">장소</span>
+        <span class="sched-value">진로실</span>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-section">
+      <div class="section-label">Contact</div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-role">담당 교사</div>
+          <div class="contact-name">김권태 선생님</div>
+          <div class="contact-sub">진로실</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-role">학생 담당</div>
+          <div class="contact-name">용지민</div>
+          <div class="contact-sub">30112</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-role">학생 담당</div>
+          <div class="contact-name">이우진</div>
+          <div class="contact-sub">30619</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-button">지금 바로 지원하세요</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
